@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiNotificacionesWhatsapp.Aplicacion", "ApiNotificacionesWhatsapp.Aplicacion\ApiNotificacionesWhatsapp.Aplicacion.csproj", "{A7AEAF87-1766-435C-BD91-F06A56BC08A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiNotificacionesWhatsapp.Dominio", "ApiNotificacionesWhatsapp.Dominio\ApiNotificacionesWhatsapp.Dominio.csproj", "{96D45232-E5A1-4BDE-A0E1-F99642D5B202}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiNotificacionesWhatsapp.Infraestructura", "ApiNotificacionesWhatsapp.Infraestructura\ApiNotificacionesWhatsapp.Infraestructura.csproj", "{F02F5D49-C3DF-4370-B55E-F4850CEE7658}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiNotificacionesWhatsapp.Persistencia", "ApiNotificacionesWhatsapp.Persistencia\ApiNotificacionesWhatsapp.Persistencia.csproj", "{CEAB6FBA-CB8D-4584-B62C-DBDC551568DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiNotificacionesWhatsapp.PruebasIntegracion", "ApiNotificacionesWhatsapp.PruebasIntegracion\ApiNotificacionesWhatsapp.PruebasIntegracion.csproj", "{C7BA21D5-8594-4712-8A6E-ECB2E6429732}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiNotificacionesWhatsapp.PruebasUnitarias", "ApiNotificacionesWhatsapp.PruebasUnitarias\ApiNotificacionesWhatsapp.PruebasUnitarias.csproj", "{DE52FF47-C446-4E4C-8160-38C7047BA40E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiNotificacionesWhatsapp.ServicioAPI", "ApiNotificacionesWhatsapp.ServicioAPI\ApiNotificacionesWhatsapp.ServicioAPI.csproj", "{477467A5-B8F6-4CCF-BA2C-1F8714DA8A16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 Pruebas", "00 Pruebas", "{D50A9C4F-60A7-4EE1-AA05-21067232CDAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Presentacion", "01 Presentacion", "{25F66B42-5439-44D7-A653-E9E3590EE90B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Aplicacion", "02 Aplicacion", "{24200EF4-AD67-4AA5-901F-B487B8422339}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 Infraestructura", "03 Infraestructura", "{224A16D7-8C4D-4805-80C1-3063E2A97098}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 Core", "04 Core", "{4E8C2085-551B-47C1-B417-CE45A2DC5D07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7AEAF87-1766-435C-BD91-F06A56BC08A2}.Debug|x64.ActiveCfg = Debug|x64
+		{A7AEAF87-1766-435C-BD91-F06A56BC08A2}.Debug|x64.Build.0 = Debug|x64
+		{A7AEAF87-1766-435C-BD91-F06A56BC08A2}.Release|x64.ActiveCfg = Release|x64
+		{A7AEAF87-1766-435C-BD91-F06A56BC08A2}.Release|x64.Build.0 = Release|x64
+		{96D45232-E5A1-4BDE-A0E1-F99642D5B202}.Debug|x64.ActiveCfg = Debug|x64
+		{96D45232-E5A1-4BDE-A0E1-F99642D5B202}.Debug|x64.Build.0 = Debug|x64
+		{96D45232-E5A1-4BDE-A0E1-F99642D5B202}.Release|x64.ActiveCfg = Release|x64
+		{96D45232-E5A1-4BDE-A0E1-F99642D5B202}.Release|x64.Build.0 = Release|x64
+		{F02F5D49-C3DF-4370-B55E-F4850CEE7658}.Debug|x64.ActiveCfg = Debug|x64
+		{F02F5D49-C3DF-4370-B55E-F4850CEE7658}.Debug|x64.Build.0 = Debug|x64
+		{F02F5D49-C3DF-4370-B55E-F4850CEE7658}.Release|x64.ActiveCfg = Release|x64
+		{F02F5D49-C3DF-4370-B55E-F4850CEE7658}.Release|x64.Build.0 = Release|x64
+		{CEAB6FBA-CB8D-4584-B62C-DBDC551568DF}.Debug|x64.ActiveCfg = Debug|x64
+		{CEAB6FBA-CB8D-4584-B62C-DBDC551568DF}.Debug|x64.Build.0 = Debug|x64
+		{CEAB6FBA-CB8D-4584-B62C-DBDC551568DF}.Release|x64.ActiveCfg = Release|x64
+		{CEAB6FBA-CB8D-4584-B62C-DBDC551568DF}.Release|x64.Build.0 = Release|x64
+		{C7BA21D5-8594-4712-8A6E-ECB2E6429732}.Debug|x64.ActiveCfg = Debug|x64
+		{C7BA21D5-8594-4712-8A6E-ECB2E6429732}.Debug|x64.Build.0 = Debug|x64
+		{C7BA21D5-8594-4712-8A6E-ECB2E6429732}.Release|x64.ActiveCfg = Release|x64
+		{C7BA21D5-8594-4712-8A6E-ECB2E6429732}.Release|x64.Build.0 = Release|x64
+		{DE52FF47-C446-4E4C-8160-38C7047BA40E}.Debug|x64.ActiveCfg = Debug|x64
+		{DE52FF47-C446-4E4C-8160-38C7047BA40E}.Debug|x64.Build.0 = Debug|x64
+		{DE52FF47-C446-4E4C-8160-38C7047BA40E}.Release|x64.ActiveCfg = Release|x64
+		{DE52FF47-C446-4E4C-8160-38C7047BA40E}.Release|x64.Build.0 = Release|x64
+		{477467A5-B8F6-4CCF-BA2C-1F8714DA8A16}.Debug|x64.ActiveCfg = Debug|x64
+		{477467A5-B8F6-4CCF-BA2C-1F8714DA8A16}.Debug|x64.Build.0 = Debug|x64
+		{477467A5-B8F6-4CCF-BA2C-1F8714DA8A16}.Release|x64.ActiveCfg = Release|x64
+		{477467A5-B8F6-4CCF-BA2C-1F8714DA8A16}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A7AEAF87-1766-435C-BD91-F06A56BC08A2} = {24200EF4-AD67-4AA5-901F-B487B8422339}
+		{96D45232-E5A1-4BDE-A0E1-F99642D5B202} = {4E8C2085-551B-47C1-B417-CE45A2DC5D07}
+		{F02F5D49-C3DF-4370-B55E-F4850CEE7658} = {224A16D7-8C4D-4805-80C1-3063E2A97098}
+		{CEAB6FBA-CB8D-4584-B62C-DBDC551568DF} = {224A16D7-8C4D-4805-80C1-3063E2A97098}
+		{C7BA21D5-8594-4712-8A6E-ECB2E6429732} = {D50A9C4F-60A7-4EE1-AA05-21067232CDAD}
+		{DE52FF47-C446-4E4C-8160-38C7047BA40E} = {D50A9C4F-60A7-4EE1-AA05-21067232CDAD}
+		{477467A5-B8F6-4CCF-BA2C-1F8714DA8A16} = {25F66B42-5439-44D7-A653-E9E3590EE90B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D634B3F-1F62-4B20-B3D3-309DC4127E0F}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <!--Incio configuración de proyecto-->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <SatelliteResourceLanguages>es</SatelliteResourceLanguages>
+    <Platforms>x64</Platforms>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Authors>Subdirección Desarrollo Proyectos Estratégicos</Authors>
+    <Company>Caja Popular Mexicana</Company>
+    <Copyright>Copyright © 2024</Copyright>
+    <Description>Arquitectura limpia - Dominio
+Responde al modelo de datos de la aplicación, servicios de dominios, interfaces, etc. 
+Las entidades son los modelos definidos que interactúan en el sistema; deben ser lo suficientemente abstractas para ser usadas por múltiples aplicaciones en el negocio.</Description>
+  </PropertyGroup>
+    <!--Fin configuración de proyecto-->
+
+    <!--Inicio Tratar Warnings como Errores-->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>SA1009</WarningsNotAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>SA1009</WarningsNotAsErrors>
+  </PropertyGroup>
+    <!--Fin Tratar Warnings como Errores-->
+
+    <!-- Inicio de Stylecop-->
+    <PropertyGroup>
+        <CodeAnalysisRuleSet>C:\Git\StyleCopCPM\netcore\StyleCopeRules.ruleset</CodeAnalysisRuleSet>
+        <Title>$(AssemblyName)</Title>
+        <AssemblyName>CPM.$(MSBuildProjectName)</AssemblyName>
+        <RootNamespace>CPM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <AdditionalFiles Include="C:\Git\StyleCopCPM\netcore\stylecop.json" Link="stylecop.json" />
+    </ItemGroup>
+    <!--Fin Stylecop-->
+
+    <!-- Inicio referencias -->
+  <ItemGroup>
+    <Folder Include="Enumerados\" />
+    <Folder Include="Constantes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="CPM.EventBus.Domain.Core" Version="1.0.0-alpha" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+    
+</Project>

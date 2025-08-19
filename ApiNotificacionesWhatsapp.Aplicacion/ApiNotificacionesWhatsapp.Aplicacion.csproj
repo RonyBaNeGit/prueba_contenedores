@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <!--Incio configuración de proyecto-->
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <SatelliteResourceLanguages>es</SatelliteResourceLanguages>
+        <Platforms>x64</Platforms>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <Authors>Subdirección Soluciones Proyectos Estratégicos</Authors>
+        <Company>Caja Popular Mexicana</Company>
+        <Copyright>Copyright © 2024</Copyright>
+        <Description>Arquitectura limpia - Aplicación
+Se trata de la evaluación de reglas de negocio y toma de decisiones, contienen las reglas que le dan sentido a la aplicación, los casos de uso dirigen el flujo a las entidades y las orquestan para cumplir con el negocio.
+        </Description>
+    </PropertyGroup>
+    <!--Fin configuración de proyecto-->
+
+    <!--Inicio Tratar Warnings como Errores-->
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+        <WarningsNotAsErrors>SA1009</WarningsNotAsErrors>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+        <WarningsNotAsErrors>SA1009</WarningsNotAsErrors>
+    </PropertyGroup>
+    <!--Fin Tratar Warnings como Errores-->
+
+    <!-- Inicio de Stylecop-->
+    <PropertyGroup>
+        <CodeAnalysisRuleSet>C:\Git\StyleCopCPM\netcore\StyleCopeRules.ruleset</CodeAnalysisRuleSet>
+        <AssemblyName>CPM.$(MSBuildProjectName)</AssemblyName>
+        <RootNamespace>CPM.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <AdditionalFiles Include="C:\Git\StyleCopCPM\netcore\stylecop.json" Link="stylecop.json" />
+    </ItemGroup>
+    <!--Fin Stylecop-->
+
+    <!-- Inicio referencias -->
+    <ItemGroup>
+        <Folder Include="DTOs\WhatsApp\EnviarWhatsAppSimple\Peticion\" />
+        <Folder Include="Excepciones\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="CPM.Extensiones.Configuracion.Core" Version="1.0.5" />
+        <PackageReference Include="CPM.Mensajeria.Arquitectura" Version="1.0.4" />
+        <PackageReference Include="CPM.Mensajeria.Auronix" Version="1.1.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.1" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ApiNotificacionesWhatsapp.Dominio\ApiNotificacionesWhatsapp.Dominio.csproj" />
+    </ItemGroup>
+
+    <!-- Fin referencias -->
+</Project>
