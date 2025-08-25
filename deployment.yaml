@@ -22,26 +22,29 @@ stages:
       inputs:
         script: |
           echo "Iniciando login al registry..."
-          podman login -u $(registryUser) -p $(registryPassword) $(registry)
+          echo "$(registryPassword)" | podman login -u "$(registryUser)" --password-stdin "$(registry)"
           if [ $? -ne 0 ]; then
             echo "Error en login, abortando."
             exit 1
           fi
+      env:
+        registryUser: $(registryUser)
+        registryPassword: $(registryPassword)
 
     - task: CmdLine@2
       displayName: 'Construir la imagen con Podman'
       inputs:
         script: |
           echo "Construyendo la imagen..."
-          podman build -t $(registry)/$(imageName):$(tag) .
+          podman build -t "$(registry)/$(imageName):$(tag)" .
 
     - task: CmdLine@2
       displayName: 'Subir la imagen a registry'
       inputs:
         script: |
           echo "Subiendo la imagen..."
-          podman push $(registry)/$(imageName):$(tag)
-          
+          podman push "$(registry)/$(imageName):$(tag)"
+
 - stage: Deploy
   displayName: 'Desplegar en OpenShift'
   dependsOn: BuildAndPush
@@ -61,5 +64,5 @@ stages:
           echo "Actualizando despliegue..."
           oc set image deployment/tu-deployment tu-container=$(registry)/$(imageName):$(tag)
 
-          # Opcional: hacer rollout
+          echo "Verificando rollout..."
           oc rollout status deployment/tu-deployment
