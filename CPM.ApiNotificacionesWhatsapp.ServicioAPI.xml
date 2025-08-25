@@ -1,0 +1,635 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CPM.ApiNotificacionesWhatsapp.ServicioAPI</name>
+    </assembly>
+    <members>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.ConfiguracionCORS">
+            <summary>
+            Propósito: Parámetros de la sección CORS del appsettings.json.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="F:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.ConfiguracionCORS.Seccion">
+            <summary>
+            Nombre de la sección en el archivo de configuración.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.ConfiguracionCORS.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.ConfiguracionCORS"/>.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.ConfiguracionCORS.PermitirCualquierOrigen">
+            <summary>
+            Indica si se permite el procesamiento de peticiones desde cualquier origen.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.ConfiguracionCORS.Politicas">
+            <summary>
+            Lista de politica para habilitar el enrutamiento de puntos de conexión.
+            </summary>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.Politica">
+            <summary>
+            Propósito: Politica para habilitar el enrutamiento de puntos de conexión (CORS).
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.Politica.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.Politica"/>.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.Politica.Nombre">
+            <summary>
+            Nombre de la directiva.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Configuracion.Cors.Politica.Origenes">
+            <summary>
+            Lista de puntos de conexión permitidos.
+            </summary>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Controllers.WhatsAppSimpleController">
+            <summary>
+            Propósito: Contiene las definiciones del controlador de WhatsAppSimple.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="F:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Controllers.WhatsAppSimpleController.orquestadorServicioWhatsapp">
+            <summary>
+            Proporciona los métodos para la implementar la lógica de orquestación a llamadas a servicios de terceros y bases de datos.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Controllers.WhatsAppSimpleController.#ctor(CPM.ApiNotificacionesWhatsapp.Aplicacion.ServiciosOrquestacion.IOrquestadorServicioWhatsapp)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Controllers.WhatsAppSimpleController"/>.
+            </summary>
+            <param name="orquestadorServicioWhatsapp">Proporciona los métodos para la implementar la lógica de orquestación a llamadas a servicios de terceros y bases de datos.</param>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Controllers.WhatsAppSimpleController.Post(CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeaderBaseDTO,CPM.ApiNotificacionesWhatsapp.Aplicacion.DTOs.SolicitudDTO)">
+            <summary>
+            Envía un mensaje vía WhatsApp.
+            </summary>
+            <param name="headers">Encabezados de la solicitud.</param>
+            <param name="solicitud">Datos de la solicitud para el envío del mensaje.</param>
+            <returns>Una tarea que, al ser resuelta devuelve el resultado del proceso.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Extensiones.ApplicationBuilderExtension">
+            <summary>
+            Propósito: Configura la canalización HTTP (pipeline) y las rutas.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Extensiones.ApplicationBuilderExtension.ConstruirAplicacion(Microsoft.AspNetCore.Builder.WebApplicationBuilder,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Configura el pipeline y rutas de la aplicación.
+            </summary>
+            <param name="builder">El Microsoft.AspNetCore.Builder.WebApplicationBuilder.</param>
+            <param name="logger">Proporciona los métodos necesarios para el registro de trazabilidad.</param>
+            <returns>La aplicación web utilizada para configurar la canalización HTTP y las rutas.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Extensiones.CorsExtension">
+            <summary>
+            Propósito: Registra y configura la colección de servicios para la habilitación de CORS.
+            Fecha de creación: 04/10/2023.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Extensiones.CorsExtension.RegistrarCORS(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Registra las políticas para el enrutamiento de puntos de conexión (CORS).
+            </summary>
+            <param name="services">Especifica el contrato para una colección de descriptores de servicios.</param>
+            <param name="config">Representa un conjunto de propiedades de configuración de aplicación de clave/valor.</param>
+            <returns>Colección de descriptores de servicios.</returns>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Extensiones.CorsExtension.ConfigurarCORS(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            Configura el uso de las políticas previamente registrar para la habilitación y uso de CORS.
+            </summary>
+            <param name="app">Un constructor de aplicaciones y servicios web.</param>
+            <returns>La aplicación web utilizada para configurar la canalización HTTP y las rutas.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Extensiones.ServiceCollectionExtension">
+            <summary>
+            Propósito: Registra la colección de servicios de la capa de presentación CPM.ApiNotificacionesWhatsapp.ServicioAPI.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Extensiones.ServiceCollectionExtension.RegistrarServiciosAPI(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Registra la lista de servicios de la capa Servicio API a la colección de servicios de la aplicación.
+            </summary>
+            <param name="services">Especifica el contrato para una colección de descriptores de servicios.</param>
+            <param name="config">Representa un conjunto de propiedades de configuración de aplicación de clave/valor.</param>
+            <returns>Colección de descriptores de servicios.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger">
+            <summary>
+            Propósito: Filtro para registro de inicio de petición y respuesta del servicio.
+            Fecha de creación: 21/05/2024.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="F:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger.logger">
+            <summary>
+            Proporciona los métodos para el registro de trazabilidad.
+            </summary>
+        </member>
+        <member name="F:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger.aplicacion">
+            <summary>
+            Parámetros de la sección Aplicacion en la configuración.
+            </summary>
+        </member>
+        <member name="F:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger.pathBase">
+            <summary>
+            URL base.
+            </summary>
+        </member>
+        <member name="F:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger.path">
+            <summary>
+            Nombre del controlador.
+            </summary>
+        </member>
+        <member name="F:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger.operation">
+            <summary>
+            Método u operación del servicio.
+            </summary>
+        </member>
+        <member name="F:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger.metodo">
+            <summary>
+            Método HTTP.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger.#ctor(Microsoft.Extensions.Logging.ILogger{CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger},Microsoft.Extensions.Options.IOptions{CPM.ApiNotificacionesWhatsapp.Aplicacion.Configuracion.Aplicacion})">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger"/>.
+            </summary>
+            <param name="logger">Proporciona los métodos para el registro de trazabilidad.</param>
+            <param name="options">Parámetros de la sección Aplicacion en la configuración.</param>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Se llama antes de que se ejecute la acción, después de que se complete el enlace del modelo.
+            </summary>
+            <param name="context">El Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.</param>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.ActionFilterLogger.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Se llama después de que se ejecuta la acción, antes del resultado de la acción.
+            </summary>
+            <param name="context">El Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.</param>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.BadRequestResultFactory">
+            <summary>
+            Propósito: Proporciona una estructura de respuesta estándar para el cliente que consume el servicio 
+            cuándo la petición no cumple con la estructura esperada.
+            Fecha de creación: 17/10/2023.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.BadRequestResultFactory.CreateActionResult(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.ValidationProblemDetails)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.BadRequestResultFactory"/>.
+            </summary>
+            <param name="context">Un contexto para filtros de acción, específicamente Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext) y Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters. ActionExecutingContext, Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate).</param>
+            <param name="validationProblemDetails">Un Microsoft.AspNetCore.Mvc.ProblemDetails para errores de validación.</param>
+            <returns>Define un contrato que representa el resultado de un método de acción.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.OperationRulesFilter">
+            <summary>
+            Propósito: Establece los estatus HTTP de respuesta y los encabezados de petición requeridos
+            para cada operación del servicio api que se visualizaran en el Swagger.
+            Fecha de creación: 03/06/2024.
+            Creador: Adrian Velazquez Rocha (VERA26024).
+            Modificó: No aplica.
+            Dependencias de conexiones e interfaces: IOperationFilter.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.OperationRulesFilter.ObtenerReglasOperacion(System.String)">
+            <summary>
+            Método que devuelve el listado de reglas o validaciones establecidas en la operación de la API.
+            </summary>
+            <param name="operacion">Nombre completo de la operación a consultar.</param>
+            <returns>Cadena HTML que contiene las reglas especificadas en la operación.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.SwaggerIgnore">
+            <summary>
+            Propósito: Excluye los campos que contienen el atributo SwaggerIgnore.
+            Fecha de creación: 03/10/2023.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.SwaggerOperationFilter">
+            <summary>
+            Propósito: Establece los estatus HTTP de respuesta y los encabezados de petición requeridos
+            para cada operación del servicio api que se visualizaran en el Swagger.
+            Fecha de creación: 03/06/2024.
+            Creador: Adrian Velazquez Rocha (VERA26024).
+            Modificó: No aplica.
+            Dependencias de conexiones e interfaces: IOperationFilter.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.SwaggerOperationFilter.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase  <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.SwaggerOperationFilter"/>.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.SwaggerOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Aplica el filtro a la operación del servicio API.
+            </summary>
+            <param name="operation">Representa una operación de un servicio API.</param>
+            <param name="context">Contexto de la operación.</param>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.SwaggerOperationFilter.CrearOpenApiResponse(System.String,System.String)">
+            <summary>
+            Crea un objeto de respuesta para Open API.
+            </summary>
+            <param name="tipo">Tipo de respuesta.</param>
+            <param name="descripcion">Descripción del objeto de respuesta.</param>
+            <returns>Objeto de respuesta JSON.</returns>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.SwaggerOperationFilter.GetOpenApiExample(System.String)">
+            <summary>
+            Inicializa una copia del objeto <see cref="T:Microsoft.OpenApi.Models.OpenApiExample"/>.
+            </summary>
+            <param name="valor">Valor de ejemplo.</param>
+            <returns>Un objeto que representa un objeto de la clase <see cref="T:Microsoft.OpenApi.Models.OpenApiExample"/>.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.SwaggerSkipPropertyFilter">
+            <summary>
+            Propósito: Excluye los campos que contienen el atributo SwaggerIgnore..
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Filters.SwaggerSkipPropertyFilter.Apply(Microsoft.OpenApi.Models.OpenApiSchema,Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext)">
+            <summary>
+            Se recorren las propiedades de las clases y se ignorar las propiedades con el atributo SwaggerIgnore.
+            </summary>
+            <param name="schema">Schema OpenApi.</param>
+            <param name="context">Contexto de filtro swagger.</param>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Helpers.DataCollectionHelper">
+            <summary>
+            Propósito: Clase auxiliar para la conversión de colecciones de datos.
+            Fecha de creación: 17/10/2023.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Helpers.DataCollectionHelper.DictionaryToObject``1(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Convierte un diccionario de datos a una instancia de la clase especificada.
+            </summary>
+            <typeparam name="T">Tipo de dato destino.</typeparam>
+            <param name="dict">Diccionario de valores.</param>
+            <returns>Instancia de la clase destino.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Helpers.ProcesarInformacionNotificaciones">
+            <summary>
+            Propósito: Implementa métodos auxiliares para procesar información necesaria para la orquestación de notificaciones de WhatsApp.
+            Fecha de creación: 03/12/2024.
+            Creador: Adrian Velazquez Rocha (VERA26024).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Helpers.ProcesarInformacionNotificaciones.CrearContenidoHtml(CPM.Mensajeria.Auronix.Aplicacion.DTOs.WhatsApp.EnviarCampania.Respuesta.RespuestaServicioAuronixDTO)">
+            <summary>
+            Crear contenido HTML de respuesta del servicio Auronix.
+            </summary>
+            <param name="respuestaServicioAuronixDTO">Información de respuesta del servicio de Auronix para solicitudes con errores o no procesadas.</param>
+            <returns>Instancia del tipo <see cref="T:CPM.Mensajeria.Auronix.Aplicacion.DTOs.WhatsApp.EnviarCampania.Respuesta.RespuestaServicioAuronixDTO"/>.</returns>        
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Helpers.ProcesarInformacionNotificaciones.ObtenerRangoNotificaciones(System.Collections.Generic.IEnumerable{CPM.Mensajeria.Auronix.Dominio.NotificacionWhatsApp},System.Int32,CPM.ApiNotificacionesWhatsapp.Aplicacion.Configuracion.ConfiguracionAuronix)">
+            <summary>
+            Obtener rango de notificaciones pendientes de procesar.
+            </summary>
+            <param name="listaNotificacionWhatsApp">Lista de notificaciones.</param>        
+            <param name="numeroNotificaciones">Número de notificaciones a obtener.</param>
+            <param name="configuracionAuronix">Parámetros de configuración en base de datos para el consumo del servicio de mensajeria de Auronix.</param>
+            <returns>Lista de notificaciones de WhatsApp.</returns>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Helpers.ProcesarInformacionNotificaciones.MapearRespuestaAuronix(System.String,CPM.Mensajeria.Auronix.Aplicacion.DTOs.WhatsApp.EnviarCampania.Peticion.PeticionWhatsAppMasivoDTO,CPM.Mensajeria.Auronix.Aplicacion.DTOs.WhatsApp.EnviarCampania.Respuesta.RespuestaServicioAuronixDTO,CPM.ApiNotificacionesWhatsapp.Aplicacion.Configuracion.Aplicacion,CPM.Comun.Arquitectura.DTOs.TrazabilidadDTO)">
+            <summary>
+            Mapear respuesta del servicio Auronix para inserción en bitácora.
+            </summary>
+            <param name="idTransaccionProceso">Identificador del conjunto de notificaciones enviadas en la petición.</param>        
+            <param name="peticionWhatsAppMasivoDTO">Estructura de petición enviada a Auronix.</param>
+            <param name="respuestaServicioAuronixDTO">Respuesta del servicio de Auronix.</param>
+            <param name="aplicacion">Parámetros de la sección Aplicacion en la configuración.</param>
+            <param name="trazabilidadDTO">Parámetros que contienen información para trazabilidad.</param>
+            <returns>Lista de notificaciones de WhatsApp.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeaderBaseDTO">
+            <summary>
+            Propósito: Encabezados de petición (Header, Query, Path).
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeaderBaseDTO.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeaderBaseDTO"/>.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeaderBaseDTO.IdCanal">
+            <summary>
+            Identificador del canal que origina la solicitud.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeaderBaseDTO.NombreAplicacion">
+            <summary>
+            Nombre de la aplicación que realiza la solicitud.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeaderBaseDTO.IdTransaccion">
+            <summary>
+            Identificador único de transacción.
+            </summary>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeadersDTO">
+            <summary>
+            Propósito: Encabezados de petición para los métodos GET y DELETE.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeadersDTO.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeadersDTO"/>.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeadersDTO.Id">
+            <summary>
+            Identificador del registro.
+            </summary>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.EjemploSwaggerBase">
+            <summary>
+            Propósito: Clase base para la generación de ejemplos de respuesta Swagger.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="F:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.EjemploSwaggerBase.MensajeNoExisteInformacion">
+            <summary>
+            Indica que no se encontró información sobre el recurso solicitado.
+            </summary>
+        </member>
+        <member name="F:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.EjemploSwaggerBase.SolicitudCorrecta">
+            <summary>
+            Mensaje para resumen de ejemplo respuesta correcta.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.EjemploSwaggerBase.GenerarNumeroAleatorio(System.Int32)">
+            <summary>
+            Genera un número entero aleatorio.
+            </summary>
+            <param name="maximo">Número máximo.</param>
+            <returns>Número generado.</returns>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.EjemploSwaggerBase.GenerarIdTransaccion">
+            <summary>
+            Generar identificador único de transacción.
+            </summary>
+            <returns>Identificador único de transacción.</returns>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.EjemploSwaggerBase.CrearPeticion``1(System.String,System.String,System.String,``0)">
+            <summary>
+            Generar ejemplo petición.
+            </summary>
+            <typeparam name="T">Tipo de petición.</typeparam>
+            <param name="nombre">Nombre de la petición.</param>
+            <param name="resumen">Descripción corta del ejemplo.</param>
+            <param name="descripcion">Descripción de la petición.</param>
+            <param name="valor">Valor de la petición.</param>
+            <returns>Objeto de ejemplo de petición.</returns>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.EjemploSwaggerBase.CrearRespuesta``1(System.String,System.String,System.String,``0)">
+            <summary>
+            Generar ejemplo respuesta.
+            </summary>
+            <typeparam name="T">Tipo de petición.</typeparam>
+            <param name="nombre">Nombre de la petición.</param>
+            <param name="resumen">Descripción corta del ejemplo.</param>
+            <param name="descripcion">Descripción de la petición.</param>
+            <param name="valor">Valor de la petición.</param>
+            <returns>Objeto de ejemplo de petición.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Entidad.ConsultarRegistroRespuestaOK">
+            <summary>
+            Propósito: Ejemplo de respuesta correcta de la operación GET/{id}.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Entidad.ConsultarRegistroRespuestaOK.GetExamples">
+            <summary>
+            Método que genera los posibles peticiones y sus diferentes escenarios.
+            </summary>
+            <returns>lista con ejemplos para swagger.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Entidad.ConsultarRegistrosRespuestaOK">
+            <summary>
+            Propósito: Ejemplo de respuesta correcta de la operación GET.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Entidad.ConsultarRegistrosRespuestaOK.GetExamples">
+            <summary>
+            Método que genera los posibles peticiones y sus diferentes escenarios.
+            </summary>
+            <returns>lista con ejemplos para swagger.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Entidad.RegistrarPeticion">
+            <summary>
+            Propósito: Ejemplo de respuesta correcta de la operación PATCH, PUT, POST 200 - OK.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Entidad.RegistrarPeticion.GetExamples">
+            <summary>
+            Método que genera los posibles peticiones y sus diferentes escenarios.
+            </summary>
+            <returns>lista con ejemplos para swagger.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Entidad.RespuestaNotFound">
+            <summary>
+            Propósito: Ejemplo de respuesta para la operación GET/{id} 200 Not Found.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Entidad.RespuestaNotFound.GetExamples">
+            <summary>
+            Método que genera los posibles peticiones y sus diferentes escenarios.
+            </summary>
+            <returns>lista con ejemplos para swagger.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Entidad.RespuestaOK">
+            <summary>
+            Propósito: Ejemplo de respuesta correcta de la operación PATCH/POST/PUT.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Entidad.RespuestaOK.GetExamples">
+            <summary>
+            Método que genera los posibles peticiones y sus diferentes escenarios.
+            </summary>
+            <returns>lista con ejemplos para swagger.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Notificacion.InsertarSolicitudWAPeticion">
+            <summary>
+            Propósito: Ejemplo de respuesta correcta de la operación POST 200 - OK, para envío de notificación.
+            Fecha de creación: 18/06/2024.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.Notificacion.InsertarSolicitudWAPeticion.GetExamples">
+            <summary>
+            Genera los posibles peticiones y sus diferentes escenarios.
+            </summary>
+            <returns>lista con ejemplos para swagger.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.RespuestaBadRequest">
+            <summary>
+            Propósito: Ejemplo de respuesta para una petición incorrecta 400 Bad Request.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.RespuestaBadRequest.GetExamples">
+            <summary>
+            Proporciona ejemplos de petición para los diferentes casos de uso.
+            </summary>
+            <returns>Lista de ejemplos.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.RespuestaErrorInterno">
+            <summary>
+            Propósito: Ejemplo de respuesta para la operación GET 500 Internal Error.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.RespuestaErrorInterno.GetExamples">
+            <summary>
+            Método que genera los posibles peticiones y sus diferentes escenarios.
+            </summary>
+            <returns>Lista con ejemplos para swagger.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.RespuestaUnauthorized">
+            <summary>
+            Propósito: Ejemplo de respuesta para una petición cuyo token de seguridad es incorrecto.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó: No aplica.
+            Dependencias de conexiones e interfaces: IMultipleExamplesProvider.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Swagger.RespuestaUnauthorized.GetExamples">
+            <summary>
+            Proporciona ejemplos de respuesta para los diferentes casos de uso.
+            </summary>
+            <returns>Lista de ejemplos.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Validadores.HeaderBaseValidador">
+            <summary>
+            Propósito: Validador de reglas para la entidad <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeaderBaseDTO"/>.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Validadores.HeaderBaseValidador.#ctor">
+            <summary>
+            Inicializa una nueva instancia de clase <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Validadores.HeaderBaseValidador"/>.
+            </summary>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Validadores.HeadersValidador">
+            <summary>
+            Propósito: Validador de reglas para la entidad <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Modelos.HeadersDTO"/>.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Validadores.HeadersValidador.#ctor">
+            <summary>
+            Inicializa una nueva instancia de clase <see cref="T:CPM.ApiNotificacionesWhatsapp.ServicioAPI.Validadores.HeadersValidador"/>.
+            </summary>
+        </member>
+        <member name="T:CPM.TellerCentral.Aplicacion.Swagger.EstacionesTrabajo.Post.EnvioNotificacionWhatsappRespuestaBadRequest">
+            <summary>
+            Propósito: Ejemplo de respuesta la operación POST - 400 - BadRequest.
+            Fecha de creación: 05/01/2024.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.TellerCentral.Aplicacion.Swagger.EstacionesTrabajo.Post.EnvioNotificacionWhatsappRespuestaBadRequest.GetExamples">
+            <summary>
+            Proporciona ejemplos de petición para los diferentes casos de uso.
+            </summary>
+            <returns>Lista de ejemplos.</returns>
+        </member>
+    </members>
+</doc>

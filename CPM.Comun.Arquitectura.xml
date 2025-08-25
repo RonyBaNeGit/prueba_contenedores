@@ -1,0 +1,330 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CPM.Comun.Arquitectura</name>
+    </assembly>
+    <members>
+        <member name="T:CPM.Comun.Arquitectura.Configuracion.Reintento">
+            <summary>
+            Propósito: Configuración para la implementación de un patrón de reintentos.
+            Fecha de creación: 20/09/2024.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Configuracion.Reintento.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.Comun.Arquitectura.Configuracion.Reintento"/>.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.Configuracion.Reintento.Cantidad">
+            <summary>
+            Cantidad de intentos.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.Configuracion.Reintento.TiempoEspera">
+            <summary>
+            Tiempo de espera del siguiente intento en segundos.
+            </summary>
+        </member>
+        <member name="T:CPM.Comun.Arquitectura.Constantes.CodigosRespuesta">
+            <summary>
+            Códigos de estatus interno para una solicitud, proceso o transacción.
+            </summary>
+            <summary>
+            Fecha de creación: 03/09/2024.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="F:CPM.Comun.Arquitectura.Constantes.CodigosRespuesta.Correcto">
+            <summary>
+            Estatus que indica que la solicitud, proceso o transacción ha concluido correctamente.
+            </summary>
+        </member>
+        <member name="F:CPM.Comun.Arquitectura.Constantes.CodigosRespuesta.Invalido">
+            <summary>
+            Estatus que indica que la información proporcionada no ha superado una regla o validación.
+            </summary>
+        </member>
+        <member name="F:CPM.Comun.Arquitectura.Constantes.CodigosRespuesta.ErrorInterno">
+            <summary>
+            Estatus que indica que la solicitud, proceso o transacción ha producido un error interno.
+            </summary>
+        </member>
+        <member name="T:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO">
+            <summary>
+            Representa la estructura de respuesta estándar para las operaciones del servicio.
+            </summary>
+            <summary>
+            Propósito: Proporciona una estructura de respuesta estándar para flujos de orquestación en aplicaciones web y servicios.
+            Fecha de creación: 03/09/2024.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO"/>.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO.EstatusExitoso">
+            <summary>
+            Indica si el proceso concluyo de manera exitosa.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO.EstatusInvalido">
+            <summary>
+            Indica si el proceso no concluyo de manera exitosa debido a validaciones no superadas.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO.EstatusError">
+            <summary>
+            Indica si el proceso concluyo con un error interno o no controlado, 
+            considerando que cuálquier valor mayor o igual 2 son códigos de error.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO.Codigo">
+            <summary>
+            Representa el estatus interno de la solicitud Código de respuesta de la aplicación: 
+            0: Correcto. 
+            1: Petición incorrecta por parte del cliente.
+            2: Error interno de la aplicación.
+            n: Error de la aplicación durante la ejecución de alguno de los proceso internos.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO.IdTransaccion">
+            <summary>
+            Identificador único de la transacción.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO.Mensaje">
+            <summary>
+            Describe el resultado de la solicitud.
+            </summary>
+        </member>
+        <member name="T:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO`1">
+            <summary>
+            Representa la estructura de respuesta estándar para las operaciones del servicio que devuelven un objeto dinámico.
+            </summary>
+            <summary>
+            Propósito: Proporciona una estructura de respuesta estándar para flujos de orquestación en aplicaciones web y servicios que devuelven un objeto dinámico.
+            Fecha de creación: 03/09/2024.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+            <typeparam name="T">Tipo de entidad que se regresará como objeto de información.</typeparam>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO`1.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO"/>.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.Response.RespuestaDTO`1.ObjetoInformacion">
+            <summary>
+            Representa una estructura de información devuelta por un proceso u operación.
+            </summary>
+        </member>
+        <member name="T:CPM.Comun.Arquitectura.DTOs.TrazabilidadDTO">
+            <summary>
+            Propósito: Proporciona información de la petición actual para el registro de trazabilidad de la transacción.
+            Fecha de creación: 03/09/2024.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.DTOs.TrazabilidadDTO.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.Comun.Arquitectura.DTOs.TrazabilidadDTO"/>.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.TrazabilidadDTO.IdCanal">
+            <summary>
+            Identificador del canal CPM que origina la solicitud.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.TrazabilidadDTO.NombreAplicacion">
+            <summary>
+            Nombre de la aplicación que realiza la solicitud.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.TrazabilidadDTO.IdTransaccion">
+            <summary>
+            Identificador único de la transacción.
+            </summary>
+        </member>
+        <member name="P:CPM.Comun.Arquitectura.DTOs.TrazabilidadDTO.Usuario">
+            <summary>
+            Usuario que realiza la solicitud.
+            </summary>
+        </member>
+        <member name="T:CPM.Comun.Arquitectura.Excepciones.ConfiguracionInvalidaException">
+            <summary>
+            Propósito: Excepción que se produce cuándo existe una referencia nula para un parámetro de configuración que es requerido.
+            Fecha de creación: 06/09/2023.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Excepciones.ConfiguracionInvalidaException.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.Comun.Arquitectura.Excepciones.ConfiguracionInvalidaException"/>.
+            </summary>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Excepciones.ConfiguracionInvalidaException.#ctor(System.String,System.String[])">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.Comun.Arquitectura.Excepciones.ConfiguracionInvalidaException"/>.
+            </summary>
+            <param name="clase">Identificador de la clase que requiere los parámetros de configuración.</param>
+            <param name="parametros">Lista de parámetros con referencia nula o vacía.</param>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Excepciones.ConfiguracionInvalidaException.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.Comun.Arquitectura.Excepciones.ConfiguracionInvalidaException"/>.
+            </summary>
+            <param name="mensaje">Mensaje que describe el error.</param>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Excepciones.ConfiguracionInvalidaException.#ctor(System.String,System.Exception)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.Comun.Arquitectura.Excepciones.ConfiguracionInvalidaException"/>.
+            </summary>
+            <param name="mensaje">Mensaje que describe el error.</param>
+            <param name="innerException">La excepción que es la causa de la excepción actual, o una referencia nula si no se especifica ninguna excepción interna.</param>
+        </member>
+        <member name="T:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper">
+            <summary>
+            Propósito: Clase auxiliar para la generación de respuestas estándar (<see cref="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaDTO(System.String,System.Int32,System.String)"/>, <see cref="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaDTO``1(``0,System.String,System.Int32,System.String)"/>).
+            Fecha de creación: 03/09/2024.
+            Creador: Juan Carlos Miranda Méndez (MIMJ22037).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="F:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.MensajePeticionIncorrecta">
+            <summary>
+            Mensaje que indica que los encabezados o cuerpo de petición proporcionados por el cliente no cumple con las reglas de validación básicas.
+            </summary>
+        </member>
+        <member name="F:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.MensajeCorrecto">
+            <summary>
+            Mensaje que indica que el servicio proceso correctamente la solicitud.
+            </summary>
+        </member>
+        <member name="F:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.MensajeInvalido">
+            <summary>
+            Mensaje que indica un error en la petición por parte del cliente que consume el servicio.
+            </summary>
+        </member>
+        <member name="F:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.MensajeError">
+            <summary>
+            Mensaje que indica un error durante el procesamiento de la solicitud por parte de la aplicación.
+            </summary>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.Deserializar(System.String)">
+            <summary>
+            Convierte una cadena de texto en formato json a un objeto del tipo <see cref="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaDTO(System.String,System.Int32,System.String)"/>.
+            </summary>
+            <param name="respuestaDTO">Cadena json.</param>
+            <returns>Respuesta DTO.</returns>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.Deserializar``1(System.String)">
+            <summary>
+            Convierte una cadena de texto en formato json a un objeto del tipo <see cref="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaDTO``1(``0,System.String,System.Int32,System.String)"/>.
+            </summary>
+            <typeparam name="T">Tipo del objeto de información a regresar en la respuesta.</typeparam>
+            <param name="respuestaDTO">Cadena json.</param>
+            <returns>Respuesta DTO.</returns>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaDTO(System.String,System.Int32,System.String)">
+            <summary>
+            Devuelve una respuesta DTO de tipo correcto.
+            </summary>
+            <param name="idTransaccion">Identificador único de la transacción.</param>
+            <param name="codigo">        
+            Código de respuesta de la aplicación: 
+            0: Correcto. 
+            1: Petición incorrecta por parte del cliente.
+            2: Error interno de la aplicación.
+            Mayor o igual a 3: Error interno de la aplicación durante la ejecución de alguno de los proceso internos.
+            </param>
+            <param name="mensaje">Mensaje de respuesta.</param>
+            <returns>Respuesta DTO de tipo correcto.</returns>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaDTO``1(``0,System.String,System.Int32,System.String)">
+            <summary>
+            Devuelve una respuesta DTO de tipo correcto.
+            </summary>
+            <typeparam name="T">Tipo del objeto de información a regresar en la respuesta.</typeparam>
+            <param name="objetoInformacion">Datos del objeto de información a regresar en la respuesta.</param>
+            <param name="idTransaccion">Identificador único de la transacción.</param>
+            <param name="codigo">        
+            Código de respuesta de la aplicación: 
+            0: Correcto. 
+            1: Petición incorrecta por parte del cliente.
+            2: Error interno de la aplicación.
+            Mayor o igual a 3: Error interno de la aplicación durante la ejecución de alguno de los proceso internos.
+            </param>
+            <param name="mensaje">Mensaje de respuesta.</param>
+            <returns>Respuesta DTO de tipo correcto.</returns>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaCorrecta(System.String,System.String)">
+            <summary>
+            Devuelve una respuesta DTO de tipo correcto.
+            </summary>
+            <param name="idTransaccion">Identificador único de la transacción.</param>
+            <param name="mensaje">Mensaje de respuesta.</param>
+            <returns>Respuesta DTO de tipo correcto.</returns>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaCorrecta``1(``0,System.String,System.String)">
+            <summary>
+            Devuelve una respuesta DTO de tipo correcto.
+            </summary>
+            <typeparam name="T">Tipo del objeto de información a regresar en la respuesta.</typeparam>
+            <param name="objetoInformacion">Datos del objeto de información a regresar en la respuesta.</param>
+            <param name="idTransaccion">Identificador único de la transacción.</param>
+            <param name="mensaje">Mensaje de respuesta.</param>
+            <returns>Respuesta DTO de tipo correcto.</returns>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaInvalida(System.String,System.String)">
+            <summary>
+            Devuelve una respuesta DTO de tipo invalida.
+            </summary>
+            <param name="idTransaccion">Identificador único de la transacción.</param>
+            <param name="mensaje">Mensaje que indica un error en la petición por parte del cliente que consume el servicio.</param>
+            <returns>Respuesta DTO de tipo incorrecta.</returns>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaInvalida``1(System.String,System.String,``0)">
+            <summary>
+            Devuelve una respuesta DTO de tipo invalida.
+            </summary>
+            <typeparam name="T">Tipo del objeto de información a regresar en la respuesta.</typeparam>
+            <param name="idTransaccion">Identificador único de la transacción.</param>
+            <param name="mensaje">Mensaje que indica un error en la petición por parte del cliente que consume el servicio.</param>
+            <param name="objetoInformacion">Datos del objeto de información a regresar en la respuesta.</param>
+            <returns>Respuesta DTO de tipo incorrecta.</returns>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaErrorInterno(System.String,System.String)">
+            <summary>
+            Devuelve una respuesta DTO de tipo error interno.
+            </summary>
+            <param name="idTransaccion">Identificador único de la transacción.</param>
+            <param name="mensaje">Mensaje que indica un error durante el procesamiento de la solicitud por parte de la aplicación.</param>
+            <returns>Respuesta DTO de tipo interno.</returns>
+        </member>
+        <member name="M:CPM.Comun.Arquitectura.Helpers.RespuestaDTOHelper.RespuestaErrorInterno``1(System.String,System.String)">
+            <summary>
+            Devuelve una respuesta DTO de tipo error interno.
+            </summary>
+            <typeparam name="T">Tipo del objeto de información a regresar en la respuesta.</typeparam>
+            <param name="idTransaccion">Identificador único de la transacción.</param>
+            <param name="mensaje">Mensaje que indica un error durante el procesamiento de la solicitud por parte de la aplicación.</param>
+            <returns>Respuesta DTO de tipo error interno.</returns>
+        </member>
+    </members>
+</doc>

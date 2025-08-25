@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CPM.ApiNotificacionesWhatsapp.Dominio</name>
+    </assembly>
+    <members>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.Dominio.Extensiones.ServiceCollectionExtension">
+            <summary>
+            Propósito: Registra la colección de servicios de la capa de Core\Dominio.
+            Fecha de creación: 07/05/2025.
+            Creador: Ronaldo Barrientos Negrete (BANR25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.Dominio.Extensiones.ServiceCollectionExtension.RegistrarMapeosDominio(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Agregar la lista de mapeos de entidades de Evento y entidades Modelo de la capa de dominio a la colección de servicios de la capa de aplicación.
+            </summary>
+            <param name="services">Especifica el contrato para una colección de descriptores de servicios.</param>
+            <returns>Colección de descriptores de servicios.</returns>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.EventoParametro">
+            <summary>
+            Propósito: Información de relación entre un evento de notificacion WA y los parámetros utilizados en la transacción.
+            Fecha de creación: 21/05/2025 9:36:06.
+            Creador: Ronaldo Barrientos Negrete (banr25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.EventoParametro.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.EventoParametro"/>.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.EventoParametro.IdTransaccionRegistro">
+            <summary>
+            Identificador único de la transacción de la notificación e enviar a Calixta.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.EventoParametro.IdParametro">
+            <summary>
+            Identificador único del parámetro.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.EventoParametro.Valor">
+            <summary>
+            Valor por default del parámetro.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.EventoParametro.Orden">
+            <summary>
+            Indica el orden en el que cada parámetro se insertará en la plantilla de la notificación.
+            </summary>
+        </member>
+        <member name="T:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.Parametro">
+            <summary>
+            Propósito: Información de la relación parámetro-plantilla.
+            Fecha de creación: 12/05/2025 17:03:42.
+            Creador: Ronaldo Barrientos Negrete (banr25734).
+            Modificó:
+            Dependencias de conexiones e interfaces: No Aplica.
+            </summary>
+        </member>
+        <member name="M:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.Parametro.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.Parametro"/>.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.Parametro.Id">
+            <summary>
+            Identificador de la plantilla.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.Parametro.NombrePlantilla">
+            <summary>
+            Nombre de la plantilla.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.Parametro.IdParametro">
+            <summary>
+            Identificador del parámetro.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.Parametro.NombreParametro">
+            <summary>
+            Nombre del parámetro.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.Parametro.Orden">
+            <summary>
+            Orden del parámetro.
+            </summary>
+        </member>
+        <member name="P:CPM.ApiNotificacionesWhatsapp.Dominio.Parametros.Parametro.Valor">
+            <summary>
+            Valor del parámetro.
+            </summary>
+        </member>
+    </members>
+</doc>
