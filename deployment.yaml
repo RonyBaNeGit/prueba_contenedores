@@ -4,9 +4,9 @@ trigger:
       - main
 
 variables:
-  registry: 'quay.io/ronybane'
-  imageName: 'api-notificaciones-whatsapp'
-  tag: 'latest'
+  registry: 'registry.redhat.io/ronybane'  # Cambia 'ronybane' a tu nombre de usuario en Red Hat
+  imageName: 'api-notificaciones-whatsapp'  # Nombre de tu imagen
+  tag: 'latest'  # Etiqueta de la imagen
 
 stages:
 - stage: BuildAndPush
@@ -28,8 +28,8 @@ stages:
             exit 1
           fi
       env:
-        registryUser: $(registryUser)
-        registryPassword: $(registryPassword)
+        registryUser: $(registryUser)  # Define tu usuario de Red Hat
+        registryPassword: $(registryPassword)  # Define tu contraseña de Red Hat
 
     - task: CmdLine@2
       displayName: 'Construir la imagen con Podman'
