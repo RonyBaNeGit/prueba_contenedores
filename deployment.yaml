@@ -1,5 +1,6 @@
 trigger:
   - main  
+
 variables:
   # Variables para tu registry
   registry: 'registry.redhat.io'           
@@ -20,15 +21,14 @@ stages:
             clean: true
 
           - script: |
-              echo "Iniciando construcción de la imagen..."
-              # Si usas podman, reemplaza docker por podman
-              podman build -t $(registry)/$(imageName):$(tag) .
-            displayName: 'Construir la imagen con Podman'
-
-          - script: |
               echo "Iniciando login al registry..."
               podman login -u $(registryUser) -p $(registryPassword) $(registry)
             displayName: 'Login al registry'
+
+          - script: |
+              echo "Construyendo la imagen..."
+              podman build -t $(registry)/$(imageName):$(tag) .
+            displayName: 'Construir la imagen con Podman'
 
           - script: |
               echo "Subiendo la imagen..."
@@ -47,7 +47,6 @@ stages:
         steps:
           - script: |
               echo "Iniciando login en OpenShift..."
-             
               oc login --token=$(ocToken) --server=$(ocServer)
 
               echo "Actualizando despliegue..."
