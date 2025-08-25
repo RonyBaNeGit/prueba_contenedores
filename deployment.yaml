@@ -1,57 +1,61 @@
 trigger:
-  - main  
+  branches:
+    include:
+      - main
 
 variables:
-  # Variables para tu registry
-  registry: 'registry.redhat.io'           
+  registry: 'registry.redhat.io'
   imageName: 'api-notificaciones-whatsapp'
-  tag: 'latest'                          
+  tag: 'latest'
 
 stages:
-  - stage: BuildAndPush
-    displayName: 'Construir y subir imagen'
-    jobs:
-      - job: BuildAndPushJob
-        displayName: 'Construir y subir imagen Docker'
-        pool:
-          vmImage: 'ubuntu-latest'  
+- stage: BuildAndPush
+  displayName: 'Construir y subir imagen'
+  jobs:
+  - job: BuildAndPushJob
+    displayName: 'Construir y subir imagen Docker'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: CmdLine@2
+      displayName: 'Login al registry'
+      inputs:
+        script: |
+          echo "Iniciando login al registry..."
+          podman login -u $(registryUser) -p $(registryPassword) $(registry)
+      
+    - task: CmdLine@2
+      displayName: 'Construir la imagen con Podman'
+      inputs:
+        script: |
+          echo "Construyendo la imagen..."
+          podman build -t $(registry)/$(imageName):$(tag) .
 
-        steps:
-          - checkout: self
-            clean: true
+    - task: CmdLine@2
+      displayName: 'Subir la imagen a registry'
+      inputs:
+        script: |
+          echo "Subiendo la imagen..."
+          podman push $(registry)/$(imageName):$(tag)
 
-          - script: |
-              echo "Iniciando login al registry..."
-              podman login -u $(registryUser) -p $(registryPassword) $(registry)
-            displayName: 'Login al registry'
-
-          - script: |
-              echo "Construyendo la imagen..."
-              podman build -t $(registry)/$(imageName):$(tag) .
-            displayName: 'Construir la imagen con Podman'
-
-          - script: |
-              echo "Subiendo la imagen..."
-              podman push $(registry)/$(imageName):$(tag)
-            displayName: 'Subir imagen a registry'
-
-  - stage: Deploy
+- stage: Deploy
+  displayName: 'Desplegar en OpenShift'
+  dependsOn: BuildAndPush
+  jobs:
+  - job: DeployJob
     displayName: 'Desplegar en OpenShift'
-    dependsOn: BuildAndPush
-    jobs:
-      - job: DeployJob
-        displayName: 'Desplegar en OpenShift'
-        pool:
-          vmImage: 'ubuntu-latest'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: CmdLine@2
+      displayName: 'Login en OpenShift'
+      inputs:
+        script: |
+          echo "Iniciando login en OpenShift..."
+          oc login --token=$(ocToken) --server=$(ocServer)
 
-        steps:
-          - script: |
-              echo "Iniciando login en OpenShift..."
-              oc login --token=$(ocToken) --server=$(ocServer)
+          echo "Actualizando despliegue..."
+          oc set image deployment/tu-deployment tu-container=$(registry)/$(imageName):$(tag)
 
-              echo "Actualizando despliegue..."
-              oc set image deployment/tu-deployment tu-container=$(registry)/$(imageName):$(tag)
-
-              # Opcional: hacer un rollout
-              oc rollout status deployment/tu-deployment
-            displayName: 'Actualizar despliegue en OpenShift'
+          # Opcional: hacer rollout
+          oc rollout status deployment/tu-deployment
