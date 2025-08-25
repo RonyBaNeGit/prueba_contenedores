@@ -1,0 +1,58 @@
+trigger:
+  - main  
+variables:
+  # Variables para tu registry
+  registry: 'registry.redhat.io'           
+  imageName: 'api-notificaciones-whatsapp'
+  tag: 'latest'                          
+
+stages:
+  - stage: BuildAndPush
+    displayName: 'Construir y subir imagen'
+    jobs:
+      - job: BuildAndPushJob
+        displayName: 'Construir y subir imagen Docker'
+        pool:
+          vmImage: 'ubuntu-latest'  
+
+        steps:
+          - checkout: self
+            clean: true
+
+          - script: |
+              echo "Iniciando construcción de la imagen..."
+              # Si usas podman, reemplaza docker por podman
+              podman build -t $(registry)/$(imageName):$(tag) .
+            displayName: 'Construir la imagen con Podman'
+
+          - script: |
+              echo "Iniciando login al registry..."
+              podman login -u $(registryUser) -p $(registryPassword) $(registry)
+            displayName: 'Login al registry'
+
+          - script: |
+              echo "Subiendo la imagen..."
+              podman push $(registry)/$(imageName):$(tag)
+            displayName: 'Subir imagen a registry'
+
+  - stage: Deploy
+    displayName: 'Desplegar en OpenShift'
+    dependsOn: BuildAndPush
+    jobs:
+      - job: DeployJob
+        displayName: 'Desplegar en OpenShift'
+        pool:
+          vmImage: 'ubuntu-latest'
+
+        steps:
+          - script: |
+              echo "Iniciando login en OpenShift..."
+             
+              oc login --token=$(ocToken) --server=$(ocServer)
+
+              echo "Actualizando despliegue..."
+              oc set image deployment/tu-deployment tu-container=$(registry)/$(imageName):$(tag)
+
+              # Opcional: hacer un rollout
+              oc rollout status deployment/tu-deployment
+            displayName: 'Actualizar despliegue en OpenShift'
