@@ -23,7 +23,11 @@ stages:
         script: |
           echo "Iniciando login al registry..."
           podman login -u $(registryUser) -p $(registryPassword) $(registry)
-      
+          if [ $? -ne 0 ]; then
+            echo "Error en login, abortando."
+            exit 1
+          fi
+
     - task: CmdLine@2
       displayName: 'Construir la imagen con Podman'
       inputs:
@@ -37,7 +41,7 @@ stages:
         script: |
           echo "Subiendo la imagen..."
           podman push $(registry)/$(imageName):$(tag)
-
+          
 - stage: Deploy
   displayName: 'Desplegar en OpenShift'
   dependsOn: BuildAndPush
