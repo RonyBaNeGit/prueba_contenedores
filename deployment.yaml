@@ -4,9 +4,13 @@ trigger:
       - main
 
 variables:
-  registry: 'registry.redhat.io/ronybane'  # Cambia 'ronybane' a tu nombre de usuario en Red Hat
-  imageName: 'api-notificaciones-whatsapp'  # Nombre de tu imagen
-  tag: 'latest'  # Etiqueta de la imagen
+- group: OpenShiftVars  # Incluye el grupo de variables
+- name: registry
+  value: 'registry.redhat.io/ronybane'  # Cambia 'ronybane' a tu nombre de usuario en Red Hat
+- name: imageName
+  value: 'api-notificaciones-whatsapp'  # Nombre de tu imagen
+- name: tag
+  value: 'latest'  # Etiqueta de la imagen
 
 stages:
 - stage: BuildAndPush
