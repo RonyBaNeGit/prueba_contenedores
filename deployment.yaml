@@ -1,5 +1,4 @@
 trigger:
-
 - main
 
 variables:
@@ -12,6 +11,23 @@ variables:
   value: 'latest'  # Etiqueta de la imagen
 
 stages:
+- stage: Setup
+  displayName: 'Instalar OpenShift CLI'
+  jobs:
+  - job: InstallOC
+    displayName: 'Instalar OpenShift CLI'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - script: |
+        echo "Descargando el CLI de OpenShift..."
+        curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/oc-linux-$(uname -s)-$(uname -m).tar.gz
+        tar -xzf oc-linux-*-*.tar.gz
+        sudo mv oc /usr/local/bin/
+        sudo chmod +x /usr/local/bin/oc
+        echo "OpenShift CLI instalado."
+      displayName: 'Instalar OC'
+
 - stage: BuildAndPush
   displayName: 'Construir y subir imagen'
   jobs:
@@ -57,16 +73,30 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: oc-setup@3
-      displayName: 'Configuracion Openshift'
+    - task: CmdLine@2
+      displayName: 'Login en OpenShift'
       inputs:
-        connectionType: 'Runtime Configuration'
-        configurationType: 'inline'
-        inlineConfig: |
+        script: |
+          echo "Iniciando login en OpenShift..."
           oc login --token=$(ocToken) --server=$(ocServer)
 
+    - task: CmdLine@2
+      displayName: 'Crear despliegue'
+      inputs:
+        script: |
+          echo "Creando despliegue..."
           oc create deployment mi-despliegue --image=$(registry)/$(imageName):$(tag) || echo "Despliegue ya existe, actualizando..."
 
+    - task: CmdLine@2
+      displayName: 'Actualizar imagen del despliegue'
+      inputs:
+        script: |
+          echo "Actualizando imagen del despliegue..."
           oc set image deployment/mi-despliegue mi-container=$(registry)/$(imageName):$(tag)
-          
+
+    - task: CmdLine@2
+      displayName: 'Verificar rollout'
+      inputs:
+        script: |
+          echo "Verificando rollout..."
           oc rollout status deployment/mi-despliegue
