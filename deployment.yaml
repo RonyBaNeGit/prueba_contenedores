@@ -1,4 +1,5 @@
 trigger:
+
 - main
 
 variables:
@@ -56,30 +57,16 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: CmdLine@2
-      displayName: 'Login en OpenShift'
+    - task: oc-setup@3
+      displayName: 'Configuracion Openshift'
       inputs:
-        script: |
-          echo "Iniciando login en OpenShift..."
+        connectionType: 'Runtime Configuration'
+        configurationType: 'inline'
+        inlineConfig: |
           oc login --token=$(ocToken) --server=$(ocServer)
 
-    - task: CmdLine@2
-      displayName: 'Crear despliegue en OpenShift'
-      inputs:
-        script: |
-          echo "Creando despliegue..."
           oc create deployment mi-despliegue --image=$(registry)/$(imageName):$(tag) || echo "Despliegue ya existe, actualizando..."
-          
-    - task: CmdLine@2
-      displayName: 'Actualizar imagen del despliegue'
-      inputs:
-        script: |
-          echo "Actualizando despliegue..."
-          oc set image deployment/mi-despliegue mi-container=$(registry)/$(imageName):$(tag)
 
-    - task: CmdLine@2
-      displayName: 'Verificar rollout'
-      inputs:
-        script: |
-          echo "Verificando rollout..."
+          oc set image deployment/mi-despliegue mi-container=$(registry)/$(imageName):$(tag)
+          
           oc rollout status deployment/mi-despliegue
