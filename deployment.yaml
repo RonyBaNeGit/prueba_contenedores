@@ -1,7 +1,5 @@
 trigger:
-  branches:
-    include:
-      - main
+- main
 
 variables:
 - group: OpenShiftVars  # Incluye el grupo de variables
@@ -65,8 +63,23 @@ stages:
           echo "Iniciando login en OpenShift..."
           oc login --token=$(ocToken) --server=$(ocServer)
 
+    - task: CmdLine@2
+      displayName: 'Crear despliegue en OpenShift'
+      inputs:
+        script: |
+          echo "Creando despliegue..."
+          oc create deployment mi-despliegue --image=$(registry)/$(imageName):$(tag) || echo "Despliegue ya existe, actualizando..."
+          
+    - task: CmdLine@2
+      displayName: 'Actualizar imagen del despliegue'
+      inputs:
+        script: |
           echo "Actualizando despliegue..."
-          oc set image deployment/tu-deployment tu-container=$(registry)/$(imageName):$(tag)
+          oc set image deployment/mi-despliegue mi-container=$(registry)/$(imageName):$(tag)
 
+    - task: CmdLine@2
+      displayName: 'Verificar rollout'
+      inputs:
+        script: |
           echo "Verificando rollout..."
-          oc rollout status deployment/tu-deployment
+          oc rollout status deployment/mi-despliegue
