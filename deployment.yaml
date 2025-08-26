@@ -6,7 +6,7 @@ trigger:
 variables:
 - group: OpenShiftVars  # Incluye el grupo de variables
 - name: registry
-  value: 'registry.redhat.io/ronybane'  # Cambia 'ronybane' a tu nombre de usuario en Red Hat
+  value: 'quay.io/ronybane'  # Cambiado a Quay.io
 - name: imageName
   value: 'api-notificaciones-whatsapp'  # Nombre de tu imagen
 - name: tag
@@ -32,8 +32,8 @@ stages:
             exit 1
           fi
       env:
-        registryUser: $(registryUser)  # Define tu usuario de Red Hat
-        registryPassword: $(registryPassword)  # Define tu contraseña de Red Hat
+        registryUser: $(registryUser)  # Define tu usuario de Quay.io
+        registryPassword: $(registryPassword)  # Define tu contraseña de Quay.io
 
     - task: CmdLine@2
       displayName: 'Construir la imagen con Podman'
