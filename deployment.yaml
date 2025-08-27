@@ -29,5 +29,5 @@ stages:
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'Conexion Openshift'
-        cmd: 'oc get pods -n ronybae-dev'  # Reemplaza con tu namespace específico
+        cmd: 'oc get pods -n ronybane-dev'  # Reemplaza con tu namespace específico
       displayName: 'Consultar Pods'
