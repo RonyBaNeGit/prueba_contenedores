@@ -98,6 +98,13 @@ stages:
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'Conexion Openshift'
+        cmd: 'oc project ronybane-dev'  # Selecciona el proyecto
+      displayName: 'Seleccionar Proyecto'
+      
+    - task: oc-cmd@3
+      inputs:
+        connectionType: 'OpenShift Connection Service'
+        openshiftService: 'Conexion Openshift'
         cmd: 'oc create deployment mi-despliegue --image=$(registry)/$(imageName):$(tag) -n $(namespace) || echo "Despliegue ya existe, actualizando..."'
       displayName: 'Crear/Actualizar Despliegue'
 
