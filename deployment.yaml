@@ -10,13 +10,10 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - script: |
-        echo "Descargando el CLI de OpenShift..."
-        curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/oc-linux-$(uname -s)-$(uname -m).tar.gz
-        tar -xzf oc-linux-*-*.tar.gz
-        sudo mv oc /usr/local/bin/
-        sudo chmod +x /usr/local/bin/oc
-        echo "OpenShift CLI instalado."
+    - task: oc-setup@3
+      inputs:
+        connectionType: 'OpenShift Connection Service'
+        openshiftService: 'Conexion Openshift'
       displayName: 'Instalar OC'
 
 - stage: QueryOpenShift
@@ -28,10 +25,9 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - script: |
-        echo "Iniciando login en OpenShift..."
-        oc login --token=$(ocToken) --server=$(ocServer)
-
-        echo "Consultando pods en el namespace ronybae-dev..."
-        oc get pods -n ronybae-dev  # Reemplaza con tu namespace específico
+    - task: oc-cmd@3
+      inputs:
+        connectionType: 'OpenShift Connection Service'
+        openshiftService: 'Conexion Openshift'
+        cmd: 'oc get pods -n ronybae-dev'  # Reemplaza con tu namespace específico
       displayName: 'Consultar Pods'
