@@ -1,15 +1,6 @@
 trigger:
 - main
 
-variables:
-- group: OpenShiftVars  # Incluye el grupo de variables
-- name: registry
-  value: 'quay.io/ronybane'  # Cambiado a Quay.io
-- name: imageName
-  value: 'api-notificaciones-whatsapp'  # Nombre de tu imagen
-- name: tag
-  value: 'latest'  # Etiqueta de la imagen
-
 stages:
 - stage: Setup
   displayName: 'Instalar OpenShift CLI'
@@ -28,75 +19,19 @@ stages:
         echo "OpenShift CLI instalado."
       displayName: 'Instalar OC'
 
-- stage: BuildAndPush
-  displayName: 'Construir y subir imagen'
+- stage: QueryOpenShift
+  displayName: 'Consultar Pods en OpenShift'
+  dependsOn: Setup
   jobs:
-  - job: BuildAndPushJob
-    displayName: 'Construir y subir imagen Docker'
+  - job: QueryJob
+    displayName: 'Consultar Pods'
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: CmdLine@2
-      displayName: 'Login al registry'
-      inputs:
-        script: |
-          echo "Iniciando login al registry..."
-          echo "$(registryPassword)" | podman login -u "$(registryUser)" --password-stdin "$(registry)"
-          if [ $? -ne 0 ]; then
-            echo "Error en login, abortando."
-            exit 1
-          fi
-      env:
-        registryUser: $(registryUser)  # Define tu usuario de Quay.io
-        registryPassword: $(registryPassword)  # Define tu contraseña de Quay.io
+    - script: |
+        echo "Iniciando login en OpenShift..."
+        oc login --token=$(ocToken) --server=$(ocServer)
 
-    - task: CmdLine@2
-      displayName: 'Construir la imagen con Podman'
-      inputs:
-        script: |
-          echo "Construyendo la imagen..."
-          podman build -t "$(registry)/$(imageName):$(tag)" .
-
-    - task: CmdLine@2
-      displayName: 'Subir la imagen a registry'
-      inputs:
-        script: |
-          echo "Subiendo la imagen..."
-          podman push "$(registry)/$(imageName):$(tag)"
-
-- stage: Deploy
-  displayName: 'Desplegar en OpenShift'
-  dependsOn: BuildAndPush
-  jobs:
-  - job: DeployJob
-    displayName: 'Desplegar en OpenShift'
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: CmdLine@2
-      displayName: 'Login en OpenShift'
-      inputs:
-        script: |
-          echo "Iniciando login en OpenShift..."
-          oc login --token=$(ocToken) --server=$(ocServer)
-
-    - task: CmdLine@2
-      displayName: 'Crear despliegue'
-      inputs:
-        script: |
-          echo "Creando despliegue..."
-          oc create deployment mi-despliegue --image=$(registry)/$(imageName):$(tag) || echo "Despliegue ya existe, actualizando..."
-
-    - task: CmdLine@2
-      displayName: 'Actualizar imagen del despliegue'
-      inputs:
-        script: |
-          echo "Actualizando imagen del despliegue..."
-          oc set image deployment/mi-despliegue mi-container=$(registry)/$(imageName):$(tag)
-
-    - task: CmdLine@2
-      displayName: 'Verificar rollout'
-      inputs:
-        script: |
-          echo "Verificando rollout..."
-          oc rollout status deployment/mi-despliegue
+        echo "Consultando pods en el namespace ronybae-dev..."
+        oc get pods -n ronybae-dev  # Reemplaza con tu namespace específico
+      displayName: 'Consultar Pods'
