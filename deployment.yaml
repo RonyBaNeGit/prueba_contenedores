@@ -1,72 +1,41 @@
-trigger:
-  branches:
-    include:
-      - main
-
-variables:
-- group: OpenShiftVars  # Incluye el grupo de variables
-- name: registry
-  value: 'registry.redhat.io/ronybane'  # Cambia 'ronybane' a tu nombre de usuario en Red Hat
-- name: imageName
-  value: 'api-notificaciones-whatsapp'  # Nombre de tu imagen
-- name: tag
-  value: 'latest'  # Etiqueta de la imagen
-
-stages:
-- stage: BuildAndPush
-  displayName: 'Construir y subir imagen'
-  jobs:
-  - job: BuildAndPushJob
-    displayName: 'Construir y subir imagen Docker'
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: CmdLine@2
-      displayName: 'Login al registry'
-      inputs:
-        script: |
-          echo "Iniciando login al registry..."
-          echo "$(registryPassword)" | podman login -u "$(registryUser)" --password-stdin "$(registry)"
-          if [ $? -ne 0 ]; then
-            echo "Error en login, abortando."
-            exit 1
-          fi
-      env:
-        registryUser: $(registryUser)  # Define tu usuario de Red Hat
-        registryPassword: $(registryPassword)  # Define tu contraseña de Red Hat
-
-    - task: CmdLine@2
-      displayName: 'Construir la imagen con Podman'
-      inputs:
-        script: |
-          echo "Construyendo la imagen..."
-          podman build -t "$(registry)/$(imageName):$(tag)" .
-
-    - task: CmdLine@2
-      displayName: 'Subir la imagen a registry'
-      inputs:
-        script: |
-          echo "Subiendo la imagen..."
-          podman push "$(registry)/$(imageName):$(tag)"
-
-- stage: Deploy
-  displayName: 'Desplegar en OpenShift'
-  dependsOn: BuildAndPush
-  jobs:
-  - job: DeployJob
-    displayName: 'Desplegar en OpenShift'
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: CmdLine@2
-      displayName: 'Login en OpenShift'
-      inputs:
-        script: |
-          echo "Iniciando login en OpenShift..."
-          oc login --token=$(ocToken) --server=$(ocServer)
-
-          echo "Actualizando despliegue..."
-          oc set image deployment/tu-deployment tu-container=$(registry)/$(imageName):$(tag)
-
-          echo "Verificando rollout..."
-          oc rollout status deployment/tu-deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-despliegue
+  namespace: ronybane-dev
+  labels:
+    app: mi-despliegue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mi-despliegue
+  template:
+    metadata:
+      labels:
+        app: mi-despliegue
+    spec:
+      containers:
+        - name: api-notificaciones-whatsapp
+          image: 'quay.io/ronybane/api-notificaciones-whatsapp:latest'
+          envFrom:
+            - secretRef:
+                name: quaycredenciales
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+      imagePullSecrets:
+        - name: quaycredenciales  # Aquí especificas tu Secret para las credenciales del registry
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
