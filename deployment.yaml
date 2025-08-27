@@ -1,6 +1,15 @@
 trigger:
 - main
 
+variables:
+- group: OpenShiftVars  # Incluye el grupo de variables
+- name: registry
+  value: 'quay.io/ronybane'  # Cambiado a Quay.io
+- name: imageName
+  value: 'api-notificaciones-whatsapp'  # Nombre de tu imagen
+- name: tag
+  value: 'latest'  # Etiqueta de la imagen
+
 stages:
 - stage: Setup
   displayName: 'Instalar OpenShift CLI'
@@ -31,3 +40,75 @@ stages:
         openshiftService: 'Conexion Openshift'
         cmd: 'oc get pods -n ronybane-dev'  # Reemplaza con tu namespace específico
       displayName: 'Consultar Pods'
+
+- stage: BuildAndPush
+  displayName: 'Construir y subir imagen'
+  jobs:
+  - job: BuildAndPushJob
+    displayName: 'Construir y subir imagen Docker'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: CmdLine@2
+      displayName: 'Login al registry'
+      inputs:
+        script: |
+          echo "Iniciando login al registry..."
+          echo "$(registryPassword)" | podman login -u "$(registryUser)" --password-stdin "$(registry)"
+          if [ $? -ne 0 ]; then
+            echo "Error en login, abortando."
+            exit 1
+          fi
+      env:
+        registryUser: $(registryUser)  # Define tu usuario de Quay.io
+        registryPassword: $(registryPassword)  # Define tu contraseña de Quay.io
+
+    - task: CmdLine@2
+      displayName: 'Construir la imagen con Podman'
+      inputs:
+        script: |
+          echo "Construyendo la imagen..."
+          podman build -t "$(registry)/$(imageName):$(tag)" .
+
+    - task: CmdLine@2
+      displayName: 'Subir la imagen a registry'
+      inputs:
+        script: |
+          echo "Subiendo la imagen..."
+          podman push "$(registry)/$(imageName):$(tag)"
+
+- stage: Deploy
+  displayName: 'Desplegar en OpenShift'
+  dependsOn: BuildAndPush
+  jobs:
+  - job: DeployJob
+    displayName: 'Desplegar en OpenShift'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: oc-setup@3
+      inputs:
+        connectionType: 'OpenShift Connection Service'
+        openshiftService: 'Conexion Openshift'
+      displayName: 'Configuración OpenShift'
+
+    - task: oc-cmd@3
+      inputs:
+        connectionType: 'OpenShift Connection Service'
+        openshiftService: 'Conexion Openshift'
+        cmd: 'oc create deployment mi-despliegue --image=$(registry)/$(imageName):$(tag) || echo "Despliegue ya existe, actualizando..."'
+      displayName: 'Crear/Actualizar Despliegue'
+
+    - task: oc-cmd@3
+      inputs:
+        connectionType: 'OpenShift Connection Service'
+        openshiftService: 'Conexion Openshift'
+        cmd: 'oc set image deployment/mi-despliegue mi-container=$(registry)/$(imageName):$(tag)'
+      displayName: 'Actualizar Imagen del Despliegue'
+
+    - task: oc-cmd@3
+      inputs:
+        connectionType: 'OpenShift Connection Service'
+        openshiftService: 'Conexion Openshift'
+        cmd: 'oc rollout status deployment/mi-despliegue'
+      displayName: 'Verificar Rollout'
