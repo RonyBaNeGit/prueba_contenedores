@@ -98,14 +98,14 @@ stages:
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'Conexion Openshift'
-        cmd: 'oc project $(namespace)'  # Usa la variable de namespace
+        cmd: 'oc project $(namespace)' 
       displayName: 'Seleccionar Proyecto'
       
     - task: oc-cmd@3
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'Conexion Openshift'
-        cmd: 'oc apply -f path/to/tu-archivo-deployment.yaml'  # Ajusta la ruta al archivo YAML
+        cmd: 'oc apply -f deployment.yaml'  
       displayName: 'Crear/Actualizar Despliegue'
 
     - task: oc-cmd@3
