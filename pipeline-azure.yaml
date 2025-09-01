@@ -98,22 +98,15 @@ stages:
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'Conexion Openshift'
-        cmd: 'oc project ronybane-dev'  # Selecciona el proyecto
+        cmd: 'oc project $(namespace)'  # Usa la variable de namespace
       displayName: 'Seleccionar Proyecto'
       
     - task: oc-cmd@3
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'Conexion Openshift'
-        cmd: 'oc create deployment mi-despliegue --image=$(registry)/$(imageName):$(tag) -n $(namespace) || echo "Despliegue ya existe, actualizando..."'
+        cmd: 'oc apply -f path/to/tu-archivo-deployment.yaml'  # Ajusta la ruta al archivo YAML
       displayName: 'Crear/Actualizar Despliegue'
-
-    - task: oc-cmd@3
-      inputs:
-        connectionType: 'OpenShift Connection Service'
-        openshiftService: 'Conexion Openshift'
-        cmd: 'oc set image deployment/mi-despliegue mi-container=$(registry)/$(imageName):$(tag) -n $(namespace)'
-      displayName: 'Actualizar Imagen del Despliegue'
 
     - task: oc-cmd@3
       inputs:
