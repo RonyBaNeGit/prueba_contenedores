@@ -103,7 +103,10 @@ stages:
 
     - script: ls -l  
       displayName: 'Listar Archivos en el Directorio'
-      
+          
+    - script: cat deployment.yaml 
+      displayName: 'Mostrar Contenido de deployment.yaml'
+
     - task: oc-cmd@3
       inputs:
         connectionType: 'OpenShift Connection Service'
