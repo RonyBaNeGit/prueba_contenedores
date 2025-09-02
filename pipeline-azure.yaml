@@ -114,9 +114,9 @@ stages:
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'Conexion Openshift'
-        cmd: 'oc apply -f ./deployment.yaml' 
-      displayName: 'Crear/Actualizar Despliegue'
-
+        cmd: 'oc apply -f /home/vsts/work/1/s/deployment.yaml'
+      displayName: 'Crear/Actualizar despliegue'
+       
     - task: oc-cmd@3
       inputs:
         connectionType: 'OpenShift Connection Service'
