@@ -101,17 +101,20 @@ stages:
         cmd: 'oc project $(namespace)' 
       displayName: 'Seleccionar Proyecto'
 
-    - script: ls -l  
-      displayName: 'Listar Archivos en el Directorio'
-          
-    - script: cat deployment.yaml 
-      displayName: 'Mostrar Contenido de deployment.yaml'
+    - script: |
+        echo "Directorio actual:"
+        pwd
+        echo "Lista de archivos en el directorio:"
+        ls -l
+        echo "Contenido de deployment.yaml:"
+        cat deployment.yaml
+      displayName: 'Verificar ubicacion y contenido'
 
     - task: oc-cmd@3
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'Conexion Openshift'
-        cmd: 'oc apply -f deployment.yaml'  
+        cmd: 'oc apply -f ./deployment.yaml' 
       displayName: 'Crear/Actualizar Despliegue'
 
     - task: oc-cmd@3
