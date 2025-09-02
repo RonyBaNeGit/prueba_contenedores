@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-clima-service
+  namespace: ronybane-dev
+spec:
+  selector:
+    app: mi-despliegue
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4444
