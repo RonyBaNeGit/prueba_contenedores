@@ -100,6 +100,9 @@ stages:
         openshiftService: 'Conexion Openshift'
         cmd: 'oc project $(namespace)' 
       displayName: 'Seleccionar Proyecto'
+
+    - script: ls -l  
+      displayName: 'Listar Archivos en el Directorio'
       
     - task: oc-cmd@3
       inputs:
