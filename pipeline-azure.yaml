@@ -89,7 +89,7 @@ stages:
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'Conexion Openshift'
-        cmd: 'oc apply -f /home/vsts/work/1/s/Route.yaml' 
+        cmd: 'oc apply -f /home/vsts/work/1/s/route.yaml' 
       displayName: 'Crear/Actualizar Route'
       
     - task: oc-cmd@3
