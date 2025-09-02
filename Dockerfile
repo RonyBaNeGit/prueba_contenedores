@@ -1,7 +1,7 @@
 # Usar la imagen base oficial de .NET 8 para producción
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 4444
+EXPOSE 5555
 
 # Copiar todos los archivos del directorio actual al contenedor
 COPY . .

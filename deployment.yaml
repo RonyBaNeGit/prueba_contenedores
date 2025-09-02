@@ -19,7 +19,7 @@ spec:
         - name: api-clima
           image: 'quay.io/ronybane/api-clima:latest'
           ports:
-            - containerPort: 4444
+            - containerPort: 5555
           envFrom:
             - secretRef:
                 name: quayacceso
