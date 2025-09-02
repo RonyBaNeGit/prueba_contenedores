@@ -27,22 +27,6 @@ stages:
         openshiftService: 'Conexion Openshift'
       displayName: 'Instalar OC'
 
-- stage: QueryOpenShift
-  displayName: 'Consultar Pods en OpenShift'
-  dependsOn: Setup
-  jobs:
-  - job: QueryJob
-    displayName: 'Consultar Pods'
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: oc-cmd@3
-      inputs:
-        connectionType: 'OpenShift Connection Service'
-        openshiftService: 'Conexion Openshift'
-        cmd: 'oc get pods -n $(namespace)'  # Utiliza la variable de namespace
-      displayName: 'Consultar Pods'
-
 - stage: BuildAndPush
   displayName: 'Construir y subir imagen'
   jobs:

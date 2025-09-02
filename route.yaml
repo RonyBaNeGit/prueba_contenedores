@@ -1,0 +1,10 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: api-clima-ruta
+spec:
+  to:
+    kind: Service
+    name: api-clima-service
+  port:
+    targetPort: 4444
