@@ -6,7 +6,7 @@ variables:
 - name: registry
   value: 'quay.io/ronybane'  # Cambiado a Quay.io
 - name: imageName
-  value: 'api-notificaciones-whatsapp'  # Nombre de tu imagen
+  value: 'api-clima'  # Nombre de tu imagen
 - name: tag
   value: 'latest'  # Etiqueta de la imagen
 - name: namespace

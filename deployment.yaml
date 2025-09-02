@@ -16,8 +16,8 @@ spec:
         app: mi-despliegue
     spec:
       containers:
-        - name: api-notificaciones-whatsapp
-          image: 'quay.io/ronybane/api-notificaciones-whatsapp:latest'
+        - name: api-clima
+          image: 'quay.io/ronybane/api-clima:latest'
           envFrom:
             - secretRef:
                 name: quayacceso

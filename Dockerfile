@@ -7,4 +7,4 @@ EXPOSE 80
 COPY . .
 
 # Comando para ejecutar tu API
-ENTRYPOINT ["dotnet", "CPM.ApiNotificacionesWhatsapp.ServicioAPI.dll"]
+ENTRYPOINT ["dotnet", "ApiPrueba.dll"]
